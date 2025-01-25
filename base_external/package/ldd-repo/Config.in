@@ -1,0 +1,5 @@
+
+config BR2_PACKAGE_LDD_REPO
+	bool "ldd-repo"
+	help
+	  Stuff from ldd repo for Assignment 7-2.
