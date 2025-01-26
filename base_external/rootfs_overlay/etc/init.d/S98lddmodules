@@ -1,13 +1,21 @@
 #!/bin/sh
 
+KERNEL_VER=`uname -r`
+
 case "$1" in
     start) 
-        echo "Starting aesdsocket"
-        start-stop-daemon -S -n aesdsocket -a /usr/bin/aesdsocket -- -d
+        echo "Starting LDD modules"
+	insmod /lib/modules/${KERNEL_VER}/extra/hello.ko || exit 1
+	insmod /lib/modules/${KERNEL_VER}/extra/scull.ko || exit 1
+	insmod /lib/modules/${KERNEL_VER}/extra/faulty.ko || exit 1
+	# TBD: create device nodes for scull and faulty
         ;;
     stop) 
-        echo "Stopping aesdsocket"
-        start-stop-daemon -K -n aesdsocket
+        echo "Stopping LDD modules"
+	rmmod /lib/modules/${KERNEL_VER}/extra/hello.ko || exit 1
+	rmmod /lib/modules/${KERNEL_VER}/extra/scull.ko || exit 1
+	rmmod /lib/modules/${KERNEL_VER}/extra/faulty.ko || exit 1
+	# TBD: remove device nodes for scull and faulty
         ;;
     *)
         echo "Usage: $0 {start|stop}"
