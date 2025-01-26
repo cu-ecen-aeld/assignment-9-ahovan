@@ -2,6 +2,23 @@
 
 KERNEL_VER=`uname -r`
 
+create_scull_devices() {
+    MAJOR=`grep scull /proc/devices | awk '{print $1}'`
+    if [ -z "$MAJOR" ]; then
+	echo "scull module not loaded"
+	exit 1
+    fi
+
+    for i in 0 1 2 3; do
+        rm -f /dev/scull$i
+	mknod /dev/scull$i c $MAJOR $i
+	chmod 666 /dev/scull$i
+    done
+
+    ln -sf /dev/scull0 /dev/scull
+}
+
+
 case "$1" in
     start) 
         echo "Starting LDD modules"
