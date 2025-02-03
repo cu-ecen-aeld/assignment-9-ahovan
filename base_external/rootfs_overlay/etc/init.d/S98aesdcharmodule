@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# module_load/module_unload scripts come from ldd-repo (assignment 7)
+case "$1" in
+    start) 
+        echo "Starting aesdchar"
+        /usr/bin/aesdchar_load aesdchar || exit 1
+	;;
+    stop) 
+        echo "Stopping aesdchar"
+        /usr/bin/aesdchar_unload aesdchar || exit 1
+        ;;
+    *)
+        echo "Usage: $0 {start|stop} [module_params]"
+        exit 1
+esac
