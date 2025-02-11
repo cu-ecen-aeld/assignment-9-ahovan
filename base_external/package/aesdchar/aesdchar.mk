@@ -3,7 +3,7 @@
 # AESDCHAR
 #
 ##############################################################
-AESDCHAR_VERSION = 7ca7b654ffcd25cb3b345c82ae74b79731f4945b
+AESDCHAR_VERSION = dbaa0a2db6142fa5082408c5a5cf3c1f31a834b5
 AESDCHAR_SITE = git@github.com:cu-ecen-aeld/assignments-3-and-later-ahovan.git
 AESDCHAR_SITE_METHOD = git
 AESDCHAR_GIT_SUBMODULES = YES
